@@ -1,0 +1,66 @@
+import { useEffect } from "react";
+import { canvasDotsBg, canvasDots } from "../utils/Utils";
+const Hero = () => {
+  useEffect(() => {
+    canvasDotsBg();
+    canvasDots();
+  }, []);
+  return (
+    <div className="bg-neutral-900 min-h-[95vh] flex items-center relative overflow-hidden">
+      <canvas className="absolute top-0 left-0 w-full h-full z-0 canvas-2" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="items-center">
+          <div className="text-center md:text-left">
+            <div className="typewriter">
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+                Hi, I&apos;m{" "}
+                <span className="text-cyan-400">Animesh Singh</span>
+              </h1>
+            </div>
+            <p className="text-xl md:text-2xl text-gray-300 mb-8">
+              Software Developer
+            </p>
+            <p className="text-gray-400 mb-8">
+              Creating elegant solutions through code
+            </p>
+            <div className="flex gap-4 justify-center md:justify-start">
+              <a
+                href="#contact"
+                className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-3 rounded-full font-medium transition-all duration-300"
+              >
+                Contact Me
+              </a>
+              <a
+                href="#projects"
+                className="border border-cyan-500 text-cyan-500 hover:bg-cyan-500 hover:text-white px-6 py-3 rounded-full font-medium transition-all duration-300"
+              >
+                View Work
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <a href="#about" className="text-white">
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            ></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  );
+};
+
+export default Hero;
