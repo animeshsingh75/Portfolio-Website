@@ -16,12 +16,22 @@ export default {
           "0%": { transform: "rotateY(0deg)" },
           "100%": { transform: "rotateY(360deg)" },
         },
+        shimmer: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
+        loadProgress: {
+          from: { transform: "scaleX(0)" },
+          to: { transform: "scaleX(1)" },
+        },
       },
       animation: {
         "slide-in-left": "slideInFromLeft 1s ease-out forwards",
         "slide-in-right": "slideInFromRight 1s ease-out forwards",
         "coin-spin": "coin-spin 0.7s ease-in-out",
         "coin-spin-image": "coin-spin 1.5s ease-in-out",
+        shimmer: "shimmer 2s infinite",
+        "load-progress": "loadProgress 1.5s ease-out",
       },
       fontFamily: {
         // Option 1: Clean and Modern

@@ -1,7 +1,8 @@
 const canvasDotsBg = function () {
-  const canvas = document.querySelector(".canvas-2"),
-    ctx = canvas.getContext("2d"),
-    colorDot = [
+  const canvas = document.querySelector(".canvas-2");
+  console.log(canvas);
+  const ctx = canvas.getContext("2d");
+  const colorDot = [
       "rgb(81, 162, 233)",
       "rgb(81, 162, 233)",
       "rgb(81, 162, 233)",

@@ -24,7 +24,8 @@ const About = () => {
   };
 
   return (
-    <div id="about" className="about bg-neutral-900 py-20">
+    <div id="about" className="bg-neutral-900 py-20">
+      <canvas className="absolute top-0 left-0 w-full h-full z-[10] canvas-2" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16  animate_fadeIn">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
