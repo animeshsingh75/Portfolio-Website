@@ -1,13 +1,22 @@
 import { useEffect } from "react";
-import { canvasDotsBg, canvasDots } from "../utils/Utils";
+import { canvasDots } from "../utils/Utils";
 const Hero = () => {
   useEffect(() => {
-    canvasDotsBg();
     canvasDots();
   }, []);
+
+  const handleScroll = (elementId) => {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="bg-neutral-900 min-h-[95vh] flex items-center relative overflow-hidden">
-      <canvas className="absolute top-0 left-0 w-full h-full z-0 canvas-2" />
+      <div className="canvas">
+        <canvas className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"></canvas>
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="items-center">
@@ -25,24 +34,24 @@ const Hero = () => {
               Creating elegant solutions through code
             </p>
             <div className="flex gap-4 justify-center md:justify-start">
-              <a
-                href="#contact"
+              <button
+                onClick={() => handleScroll("contact")}
                 className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-3 rounded-full font-medium transition-all duration-300"
               >
                 Contact Me
-              </a>
-              <a
-                href="#projects"
+              </button>
+              <button
+                onClick={() => handleScroll("projects")}
                 className="border border-cyan-500 text-cyan-500 hover:bg-cyan-500 hover:text-white px-6 py-3 rounded-full font-medium transition-all duration-300"
               >
                 View Work
-              </a>
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
+      {/* <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
         <a href="#about" className="text-white">
           <svg
             className="w-6 h-6"
@@ -58,7 +67,7 @@ const Hero = () => {
             ></path>
           </svg>
         </a>
-      </div>
+      </div> */}
     </div>
   );
 };

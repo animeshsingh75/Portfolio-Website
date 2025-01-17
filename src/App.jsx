@@ -4,11 +4,22 @@ import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
+import WorkExperience from "./components/WorkExperience";
+import Contact from "./components/Contact";
+import { canvasDotsBg } from "./utils/Utils";
+import {
+  skills,
+  projects,
+  visibleSkills,
+  hiddenSkills,
+  experiences,
+} from "./utils/data";
 
 function App() {
   const [showScrollButton, setShowScrollButton] = useState(false);
 
   useEffect(() => {
+    canvasDotsBg();
     const handleScroll = () => {
       if (window.scrollY > 300) {
         setShowScrollButton(true);
@@ -31,10 +42,15 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <Hero />
+      <div className="fixed top-0 left-0 w-full h-screen pointer-events-none">
+        <canvas className="canvas-2"></canvas>
+      </div>
       <Navbar />
-      <About />
-      <Projects />
-      <Skills />
+      <About skills={skills} />
+      <Projects projects={projects} />
+      <Skills visibleSkills={visibleSkills} hiddenSkills={hiddenSkills} />
+      <WorkExperience experiences={experiences} />
+      <Contact />
       {showScrollButton && (
         <button
           onClick={scrollToTop}

@@ -1,6 +1,6 @@
+/* eslint-disable no-self-assign */
 const canvasDotsBg = function () {
   const canvas = document.querySelector(".canvas-2");
-  console.log(canvas);
   const ctx = canvas.getContext("2d");
   const colorDot = [
       "rgb(81, 162, 233)",

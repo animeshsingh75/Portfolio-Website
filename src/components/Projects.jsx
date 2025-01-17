@@ -1,73 +1,11 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
-const Projects = () => {
-  const projects = [
-    {
-      id: 1,
-      title: "Proabt",
-      description:
-        "ProAbt is a community chat app developed entirely in Kotlin which helps in solving programming doubts of an individual.",
-      techStack: "Android, Kotlin, Firebase",
-      thumbnail: "images/proabt.png",
-      liveLink: "",
-      githubLink: "https://github.com/animeshsingh75/ProAbt/",
-    },
-    {
-      id: 2,
-      title: "FoodFire",
-      description:
-        "A React app for exploring restaurants, browsing menus, managing a cart with Redux, fast bundling via Parcel, and quality assurance with Jest.",
-      techStack: "React, Redux, Parcel, Jest",
-      thumbnail: "images/foodfire.png",
-      liveLink: "https://foodfire-animesh.vercel.app/",
-      githubLink: "https://github.com/animeshsingh75/Food-Ordering-App",
-    },
-    {
-      id: 3,
-      title: "Weather App",
-      description:
-        "It shows the weather and even the forecast for the next 5 days and even important details like humidity, wind speed, pressure, etc. You can select your location by gps or by searching any city.",
-      techStack: "Android, Kotlin, MVVM",
-      thumbnail: "images/weather.png",
-      liveLink: "",
-      githubLink: "https://github.com/animeshsingh75/Weather-App-Android",
-    },
-    {
-      id: 4,
-      title: "Linkedin Clone",
-      description:
-        "A LinkedIn clone built with React, Tailwind CSS, NodeJS and MongoDB, featuring user authentication, profile creation, and networking features.",
-      techStack: "React, Tailwind CSS, NodeJS, MongoDB",
-      thumbnail: "images/coming_soon.jpeg",
-      liveLink: "",
-      githubLink: "",
-      comingSoon: true,
-    },
-    {
-      id: 5,
-      title: "Flutter Apps",
-      description:
-        "A diverse collection of 8 Flutter projects developed for Android and iOS, showcasing skills in building functional and scalable apps. Includes API-powered apps like Clima and Bitcoin Price, as well as creative tools like FlashChat and TodoApp.",
-      techStack: "Flutter, Dart",
-      thumbnail: "images/flutter_projects.webp",
-      liveLink: "",
-      githubLink: "https://github.com/animeshsingh75/Flutter-Projects",
-    },
-    {
-      id: 6,
-      title: "Real Life Projects",
-      description:
-        "A collection of real-life projects which are based on the real-life problems and solutions using Data Structures and Algorithms.",
-      techStack: "HTML, CSS, JavaScript,DSA",
-      thumbnail: "images/real_life_project.png",
-      liveLink: "",
-      githubLink: "https://github.com/animeshsingh75/Real-Life-Project",
-    },
-  ];
-
+const Projects = ({ projects }) => {
   const [visibleProjects, setVisibleProjects] = useState(3);
 
   const showMoreProjects = () => {
+    console.log(projects.length);
     setVisibleProjects(projects.length);
   };
 
@@ -161,6 +99,21 @@ const Projects = () => {
       </div>
     </div>
   );
+};
+
+Projects.propTypes = {
+  projects: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      thumbnail: PropTypes.string.isRequired,
+      techStack: PropTypes.string.isRequired,
+      githubLink: PropTypes.string.isRequired,
+      liveLink: PropTypes.string.isRequired,
+      comingSoon: PropTypes.bool,
+    })
+  ).isRequired,
 };
 
 export default Projects;

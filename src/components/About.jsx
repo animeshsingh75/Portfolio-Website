@@ -1,19 +1,6 @@
-const About = () => {
-  const skills = [
-    { name: "HTML", icon: "/images/html.png" },
-    { name: "JavaScript", icon: "/images/js.png" },
-    { name: "Kotlin", icon: "/images/kotlin.png" },
-    { name: "C++", icon: "/images/cpp.png" },
-    { name: "Java", icon: "/images/java.png" },
-    { name: "Android", icon: "/images/android.png" },
-    { name: "React", icon: "/images/react.png" },
-    { name: "CSS", icon: "/images/css.png" },
-    { name: "Express.js", icon: "/images/express.png" },
-    { name: "MongoDB", icon: "/images/mongo.png" },
-    { name: "Node.js", icon: "/images/node.png" },
-    { name: "Git", icon: "/images/git.png" },
-  ];
+import PropTypes from "prop-types";
 
+const About = ({ skills }) => {
   const handleSkillClick = (e) => {
     // Remove any existing animation
     e.currentTarget.querySelector("img").classList.remove("animate-coin-spin");
@@ -24,8 +11,7 @@ const About = () => {
   };
 
   return (
-    <div id="about" className="bg-neutral-900 py-20">
-      <canvas className="absolute top-0 left-0 w-full h-full z-[10] canvas-2" />
+    <div id="about" className="bg-neutral-900 py-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16  animate_fadeIn">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -87,6 +73,15 @@ const About = () => {
       </div>
     </div>
   );
+};
+
+About.propTypes = {
+  skills: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      icon: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default About;
