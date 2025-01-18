@@ -1,8 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 
 const Projects = ({ projects }) => {
   const [visibleProjects, setVisibleProjects] = useState(3);
+  const projectsRef = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-fade-in");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    projectsRef.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      projectsRef.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, [visibleProjects]);
 
   const showMoreProjects = () => {
     console.log(projects.length);
@@ -16,7 +41,7 @@ const Projects = ({ projects }) => {
   return (
     <div id="projects" className="bg-neutral-900 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 animate__animated animate__fadeIn">
+        <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             My Projects
           </h2>
@@ -24,10 +49,11 @@ const Projects = ({ projects }) => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.slice(0, visibleProjects).map((project) => (
+          {projects.slice(0, visibleProjects).map((project, index) => (
             <div
               key={project.id}
-              className="group bg-white rounded-xl shadow-lg overflow-hidden animate__animated animate__fadeInUp"
+              ref={(el) => (projectsRef.current[index] = el)}
+              className="group bg-white rounded-xl shadow-lg overflow-hidden opacity-0"
             >
               <div className="relative h-64 bg-neutral-200 group-hover:cursor-pointer">
                 {project.comingSoon && (

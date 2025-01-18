@@ -24,6 +24,10 @@ export default {
           from: { transform: "scaleX(0)" },
           to: { transform: "scaleX(1)" },
         },
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
       },
       animation: {
         "slide-in-left": "slideInFromLeft 1s ease-out forwards",
@@ -32,6 +36,7 @@ export default {
         "coin-spin-image": "coin-spin 1.5s ease-in-out",
         shimmer: "shimmer 2s infinite",
         "load-progress": "loadProgress 1.5s ease-out",
+        "fade-in": "fadeIn 1s ease-in forwards",
       },
       fontFamily: {
         // Option 1: Clean and Modern

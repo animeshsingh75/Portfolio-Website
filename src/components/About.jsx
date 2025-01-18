@@ -1,19 +1,47 @@
 import PropTypes from "prop-types";
+import { useState, useRef, useEffect } from "react";
 
 const About = ({ skills }) => {
   const handleSkillClick = (e) => {
-    // Remove any existing animation
     e.currentTarget.querySelector("img").classList.remove("animate-coin-spin");
-    // Force a reflow
     void e.currentTarget.querySelector("img").offsetWidth;
-    // Add the animation class back
     e.currentTarget.querySelector("img").classList.add("animate-coin-spin");
   };
 
+  // Add useEffect and useRef hooks at the top of the component
+  const [isVisible, setIsVisible] = useState(false);
+  const aboutRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (aboutRef.current) {
+      observer.observe(aboutRef.current);
+    }
+
+    return () => {
+      if (aboutRef.current) {
+        observer.unobserve(aboutRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <div id="about" className="bg-neutral-900 py-0">
+    <div id="about" className="bg-neutral-900 py-0" ref={aboutRef}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16  animate_fadeIn">
+        <div
+          className={`text-center mb-16 ${
+            isVisible ? "animate_fadeIn" : "opacity-0"
+          }`}
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             About Me
           </h2>
@@ -22,14 +50,18 @@ const About = ({ skills }) => {
 
         <div className="grid md:grid-cols-2 gap-12">
           <div className="flex flex-col items-center space-y-6">
-            <div className="animate-slide-in-left">
+            <div className={isVisible ? "animate-slide-in-left" : "opacity-0"}>
               <img
                 src="/images/profilePic.jpeg"
                 alt="Animesh Singh"
                 className="rounded-full w-[200px] h-[200px] md:w-[300px] md:h-[300px] hover:animate-coin-spin-image transition-transform duration-500"
               />
             </div>
-            <p className="text-gray-300 text-lg animate-slide-in-left font-poppins text-justify">
+            <p
+              className={`text-gray-300 text-lg ${
+                isVisible ? "animate-slide-in-left" : "opacity-0"
+              } font-poppins text-justify`}
+            >
               I’m a Software Developer with a passion for solving complex
               problems and a diverse tech stack including Android, React,
               Flutter, and more. I thrive at the intersection of creativity,
@@ -39,7 +71,11 @@ const About = ({ skills }) => {
           </div>
 
           <div className="space-y-6">
-            <div className="flex flex-wrap justify-center items-center gap-8 max-w-[800px] mx-auto animate-slide-in-right">
+            <div
+              className={`flex flex-wrap justify-center items-center gap-8 max-w-[800px] mx-auto ${
+                isVisible ? "animate-slide-in-right" : "opacity-0"
+              }`}
+            >
               {skills.map((skill, index) => (
                 <div
                   key={index}

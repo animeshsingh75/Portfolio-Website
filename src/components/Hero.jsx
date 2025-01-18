@@ -51,7 +51,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
         <a href="#about" className="text-white">
           <svg
             className="w-6 h-6"
@@ -67,7 +67,7 @@ const Hero = () => {
             ></path>
           </svg>
         </a>
-      </div> */}
+      </div>
     </div>
   );
 };

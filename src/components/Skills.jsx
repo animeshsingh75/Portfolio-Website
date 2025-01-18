@@ -1,9 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 
 const Skills = ({ visibleSkills, hiddenSkills }) => {
   const [showAll, setShowAll] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState({});
+  const [isVisible, setIsVisible] = useState(false);
+  const skillsRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (skillsRef.current) {
+      observer.observe(skillsRef.current);
+    }
+
+    return () => {
+      if (skillsRef.current) {
+        observer.disconnect();
+      }
+    };
+  }, []);
 
   const toggleShowAll = () => setShowAll(!showAll);
 
@@ -61,9 +82,13 @@ const Skills = ({ visibleSkills, hiddenSkills }) => {
   };
 
   return (
-    <div id="skills" className="bg-neutral-900 py-0">
+    <div id="skills" className="bg-neutral-900 py-0" ref={skillsRef}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 animate__animated animate__fadeIn">
+        <div
+          className={`text-center mb-16 transition-opacity duration-1000 ${
+            isVisible ? "opacity-100" : "opacity-0"
+          }`}
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             My Skills
           </h2>
@@ -74,7 +99,12 @@ const Skills = ({ visibleSkills, hiddenSkills }) => {
           {visibleSkills.map((section, index) => (
             <div
               key={index}
-              className="bg-neutral-800 p-6 rounded-xl animate__animated animate__fadeInUp"
+              className={`bg-neutral-800 p-6 rounded-xl transition-all duration-1000 transform ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
+              }`}
+              style={{ transitionDelay: `${index * 200}ms` }}
             >
               <div className="text-cyan-500 mb-4">
                 <svg
@@ -102,7 +132,14 @@ const Skills = ({ visibleSkills, hiddenSkills }) => {
             hiddenSkills.map((section, index) => (
               <div
                 key={index}
-                className="bg-neutral-800 p-6 rounded-xl animate__animated animate__fadeInUp"
+                className={`bg-neutral-800 p-6 rounded-xl transition-all duration-1000 transform ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-10"
+                }`}
+                style={{
+                  transitionDelay: `${(visibleSkills.length + index) * 200}ms`,
+                }}
               >
                 <div className="text-cyan-500 mb-4">
                   <svg
