@@ -1,5 +1,5 @@
 import { useState } from "react";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
 
 const Contact = () => {
@@ -38,16 +38,15 @@ const Contact = () => {
       return;
     }
 
-    const serviceId = "service_twru9sr";
-    const templateId = "template_ej20jgs";
-    const publicKey = "CpUCaRib2HEP93ukN";
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
     const templateParams = {
       from_name: formData.name,
       from_email: formData.email,
       to_name: "Animesh Singh",
       message: formData.subject + ":" + formData.message,
     };
-
     toast.loading("Sending message...");
 
     emailjs.send(serviceId, templateId, templateParams, publicKey).then(
@@ -61,7 +60,7 @@ const Contact = () => {
           message: "",
         });
       },
-      () => {
+      (error) => {
         toast.dismiss();
         toast.error("Failed to send message. Please try again later.");
       }
