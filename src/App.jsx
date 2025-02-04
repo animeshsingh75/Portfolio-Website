@@ -14,6 +14,7 @@ import {
   hiddenSkills,
   experiences,
 } from "./utils/data";
+import Footer from "./components/Footer";
 
 function App() {
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -60,6 +61,7 @@ function App() {
           ↑
         </button>
       )}
+      <Footer />
     </div>
   );
 }

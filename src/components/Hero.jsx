@@ -41,7 +41,7 @@ const Hero = () => {
                 Contact Me
               </button>
               <button
-                onClick={() => handleScroll("projects")}
+                onClick={() => handleScroll("experience")}
                 className="border border-cyan-500 text-cyan-500 hover:bg-cyan-500 hover:text-white px-6 py-3 rounded-full font-medium transition-all duration-300"
               >
                 View Work
