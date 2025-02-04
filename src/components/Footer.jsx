@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -31,6 +31,14 @@ const Footer = () => {
               className="text-gray-300 hover:text-white transition-colors duration-300"
             >
               <FaGithub size={24} />
+            </a>
+            <a
+              href="https://x.com/animeshsingh75"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-white transition-colors duration-300"
+            >
+              <FaTwitter size={24} />
             </a>
           </div>
         </div>
