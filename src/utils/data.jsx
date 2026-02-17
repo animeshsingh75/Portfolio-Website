@@ -145,6 +145,18 @@ const hiddenSkills = [
 
 const experiences = [
   {
+    title: "Software Engineer ",
+    company: "HubSpot",
+    date: "June 2025 - Present",
+    location: "Cambridge, MA",
+    points: [
+      "Led the migration and complete rewrite of core home-page components, establishing a scalable foundation including VRTs/Storybooks that accelerated component integration by 30% for other teams within HubSpot.",
+      "Led the critical migration of the core bookmark system across 5 repositories to a reliable ID-based architecture, successfully increasing API type safety and resulting in a 40% reduction in path-based lookup errors.",
+      "Significantly improved accessibility by implementing keyboard navigation and optimizing aria labels, which directly contributed to a 45% increase in the Lighthouse Accessibility score.",
+      "Enhanced user interface stability by implementing a dimension-cached loading skeleton, which effectively reduced visual layout shifting (Layout Thrash) by 65% and significantly improved perceived user experience.",
+    ],
+  },
+  {
     title: "Software Engineer Intern ",
     company: "Flashfeed",
     date: "May 2024 - December 2024",
